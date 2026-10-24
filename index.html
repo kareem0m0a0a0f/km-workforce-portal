@@ -33,14 +33,13 @@
   <main id="app">
     <div class="error" id="setupMessage">
       <strong>يلزم إعداد رابط التطبيق أولًا.</strong><br>
-      افتح هذا الملف وابحث عن <code>PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE</code>، ثم استبدله برابط Web App المنشور الذي ينتهي بـ <code>/exec</code>.
+      افتح هذا الملف وابحث عن <code>https://script.google.com/macros/s/AKfycbySf26JvHf4QGCt9JWWk4MWd-NiFWgF3FZBMhPby-onQiGNGfWw9W6h8kmg-xol0MpIUQ/exec</code>، ثم استبدله برابط Web App المنشور الذي ينتهي بـ <code>/exec</code>.
     </div>
   </main>
   <footer>KM Workforce · نظام داخلي لإدارة الحضور والانصراف</footer>
   <script>
     // استبدل القيمة التالية برابط Web App المنشور، وينبغي أن ينتهي بـ /exec.
-    const APP_URL = 'https://script.google.com/macros/s/AKfycbySf26JvHf4QGCt9JWWk4MWd-NiFWgF3FZBMhPby-onQiGNGfWw9W6h8kmg-xol0MpIUQ/exec
-';
+    const APP_URL = 'https://script.google.com/macros/s/AKfycbySf26JvHf4QGCt9JWWk4MWd-NiFWgF3FZBMhPby-onQiGNGfWw9W6h8kmg-xol0MpIUQ/exec';
 
     // هذا الغلاف يوجّه إلى واجهة الموظف فقط. أبقِ لوحة الإدارة الحساسة على رابطها المباشر.
     if (APP_URL.startsWith('https://script.google.com/macros/s/') && APP_URL.endsWith('/exec')) {
