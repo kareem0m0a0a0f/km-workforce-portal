@@ -4,79 +4,184 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#123b5d">
-  <title>Tantawy Workforce Portal</title>
+  <meta name="description" content="بوابة إدارة الحضور والانصراف والموظفين والفروع والتقارير والرواتب">
+  <!-- Favicon: use the KM logo file stored in the repository root. Version query helps refresh browser cache. -->
+  <link rel="icon" type="image/png" href="./logo-left.png?v=2">
+  <link rel="shortcut icon" type="image/png" href="./logo-left.png?v=2">
+  <link rel="apple-touch-icon" href="./logo-left.png?v=2">
+  <title>Tantawy Workforce Portal | لوحة الإدارة</title>
   <style>
-    :root { color-scheme: light; --navy:#123b5d; --teal:#13836d; --ink:#172b3a; --muted:#617282; --line:#dce5eb; }
-    * { box-sizing: border-box; }
-    html, body { width:100%; height:100%; margin:0; }
-    body { display:flex; flex-direction:column; font-family:Tahoma,Arial,sans-serif; color:var(--ink); background:#f2f6f9; }
-    header { display:flex; align-items:center; gap:12px; min-height:70px; padding:10px max(14px,calc((100vw - 1200px)/2)); color:#fff; background:linear-gradient(135deg,#123b5d,#176e78); }
-.header-logo{
-  width:60px;
-  height:60px;
-  object-fit:contain;
-  background:#fff;
-  border-radius:12px;
-  padding:4px;
-  flex-shrink:0;
-}
+    :root {
+      color-scheme: light;
+      --navy: #123b5d;
+      --teal: #13836d;
+      --ink: #172b3a;
+      --muted: #617282;
+      --line: #dce5eb;
+      --page-bg: #f2f6f9;
+    }
 
-.header-center{
-  flex:1;
-  text-align:center;
-}    .brand-title { font-size:19px; font-weight:800; }
-    .brand-subtitle { margin-top:3px; font-size:11px; opacity:.85; }
-    main { flex:1; min-height:0; }
-    iframe { display:block; width:100%; height:100%; min-height:420px; border:0; background:#f2f6f9; }
-    footer { padding:7px 12px; text-align:center; font-size:10px; color:var(--muted); background:#fff; border-top:1px solid var(--line); }
-    .error { padding:20px; max-width:760px; margin:20px auto; line-height:1.8; }
-    .error code { overflow-wrap:anywhere; }
-    @media(max-width:480px){ header{min-height:60px;padding:8px 12px}.brand-mark{width:40px;height:40px;flex-basis:40px}.brand-title{font-size:17px}iframe{min-height:360px} }
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      font-family: Tahoma, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--page-bg);
+    }
+
+    .site-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-height: 78px;
+      padding: 9px max(14px, calc((100vw - 1200px) / 2));
+      color: #fff;
+      background: linear-gradient(135deg, var(--navy), #176e78);
+      box-shadow: 0 3px 12px #123b5d18;
+      flex-shrink: 0;
+    }
+
+    .logo-slot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      flex: 0 0 60px;
+      padding: 4px;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid #ffffff70;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px #071d2b26;
+    }
+
+    .header-logo {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .logo-fallback {
+      display: grid;
+      place-items: center;
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+      background: #edf5f7;
+      color: var(--navy);
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .logo-fallback[hidden] { display: none !important; }
+    .header-center { flex: 1; min-width: 0; text-align: center; }
+    .brand-title { font-size: 19px; font-weight: 800; line-height: 1.4; overflow-wrap: anywhere; }
+    .brand-subtitle { margin-top: 3px; font-size: 12px; line-height: 1.6; opacity: .9; }
+
+    main {
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
+      min-height: 0;
+      min-width: 0;
+    }
+
+    .frame-shell {
+      position: relative;
+      flex: 1 1 auto;
+      min-height: 420px;
+      background: var(--page-bg);
+    }
+
+    iframe {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      border: 0;
+      background: var(--page-bg);
+    }
+
+    .site-footer {
+      flex-shrink: 0;
+      padding: 8px 12px;
+      text-align: center;
+      font-size: 11px;
+      line-height: 1.7;
+      color: var(--muted);
+      background: #fff;
+      border-top: 1px solid var(--line);
+    }
+
+    @media (max-width: 480px) {
+      .site-header { min-height: 62px; gap: 8px; padding: 7px 10px; }
+      .logo-slot { width: 42px; height: 42px; flex-basis: 42px; padding: 3px; border-radius: 9px; }
+      .logo-fallback { font-size: 14px; }
+      .brand-title { font-size: 14px; }
+      .brand-subtitle { font-size: 10px; }
+      .frame-shell, iframe { min-height: 360px; }
+      .site-footer { font-size: 10px; }
+    }
   </style>
 </head>
 <body>
-<header>
-
-  <img
-    class="header-logo"
-    src="logo-right.png"
-    alt="شعار الشركة">
-
-  <div class="header-center">
-    <div class="brand-title">
-      Tantawy Workforce Portal
+  <header class="site-header">
+    <!-- الشعار على اليمين؛ ضع logo-right.png في المجلد الرئيسي لمستودع GitHub -->
+    <div class="logo-slot" aria-label="شعار الشركة">
+      <img id="companyLogo" class="header-logo" src="logo-right.png" alt="شعار الشركة">
+      <span id="companyLogoFallback" class="logo-fallback" hidden aria-hidden="true">TG</span>
     </div>
-    <div class="brand-subtitle">
-      نظام إدارة الحضور والانصراف
+
+    <div class="header-center">
+      <div class="brand-title">Tantawy Workforce Portal</div>
+      <div class="brand-subtitle">بوابة إدارة الحضور والانصراف والموارد البشرية</div>
     </div>
-  </div>
 
-  <img
-    class="header-logo"
-    src="logo-left.png"
-    alt="شعار KM">
+    <!-- الشعار على اليسار؛ ضع logo-left.png في المجلد الرئيسي لمستودع GitHub -->
+    <div class="logo-slot" aria-label="شعار KM Workforce">
+      <img id="kmLogo" class="header-logo" src="logo-left.png" alt="شعار KM Workforce">
+      <span id="kmLogoFallback" class="logo-fallback" hidden aria-hidden="true">KM</span>
+    </div>
+  </header>
 
-</header>
-  <main id="app">
-    <div class="error" id="setupMessage">
-      <strong>يلزم إعداد رابط التطبيق أولًا.</strong><br>
-      افتح هذا الملف وابحث عن <code>https://script.google.com/macros/s/AKfycbxx-vAaZS_BvmM8SAGqwK7Z3QfPv9wNqhmXEwTYcrsZxQmyFmkYZ7niuDyPi1tWLFXP5w/exec</code>، ثم استبدله برابط Web App المنشور الذي ينتهي بـ <code>/exec</code>.
+  <main id="app" aria-label="محتوى لوحة الإدارة">
+    <div class="frame-shell">
+      <iframe
+        id="adminFrame"
+        title="لوحة إدارة Tantawy Workforce Portal"
+        allow="geolocation"
+        referrerpolicy="strict-origin-when-cross-origin"
+        src="https://script.google.com/macros/s/AKfycbxx-vAaZS_BvmM8SAGqwK7Z3QfPv9wNqhmXEwTYcrsZxQmyFmkYZ7niuDyPi1tWLFXP5w/exec?page=admin&amp;embed=1">
+      </iframe>
     </div>
   </main>
-  <footer>KM Workforce · نظام داخلي لإدارة الحضور والانصراف</footer>
-  <script>
-    // استبدل القيمة التالية برابط Web App المنشور، وينبغي أن ينتهي بـ /exec.
-    const APP_URL = 'https://script.google.com/macros/s/AKfycbxx-vAaZS_BvmM8SAGqwK7Z3QfPv9wNqhmXEwTYcrsZxQmyFmkYZ7niuDyPi1tWLFXP5w/exec';
 
-    // هذا الغلاف يوجّه إلى واجهة الموظف فقط. أبقِ لوحة الإدارة الحساسة على رابطها المباشر.
-    if (APP_URL.startsWith('https://script.google.com/macros/s/') && APP_URL.endsWith('/exec')) {
-      const frame = document.createElement('iframe');
-      frame.title = 'KM Workforce — واجهة الموظف';
-      frame.allow = 'geolocation';
-      frame.referrerPolicy = 'strict-origin-when-cross-origin';
-      frame.src = APP_URL + '?embed=1';
-      document.getElementById('app').replaceChildren(frame);
+  <footer class="site-footer">
+    Tantawy Workforce Portal · بوابة الإدارة الداخلية للموارد البشرية والحضور والانصراف
+  </footer>
+
+  <script>
+    // إظهار بديل نصي للشعار إذا لم يتم العثور على ملف الصورة.
+    function configureLogo(imageId, fallbackId) {
+      const image = document.getElementById(imageId);
+      const fallback = document.getElementById(fallbackId);
+      const showFallback = () => {
+        image.hidden = true;
+        fallback.hidden = false;
+      };
+      image.addEventListener('error', showFallback);
+      if (image.complete && image.naturalWidth === 0) showFallback();
     }
+
+    configureLogo('companyLogo', 'companyLogoFallback');
+    configureLogo('kmLogo', 'kmLogoFallback');
   </script>
 </body>
 </html>
